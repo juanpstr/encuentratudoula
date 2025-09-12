@@ -24,7 +24,9 @@ jobs:
       run: npm ci
       
     - name: 🏗️ Build proyecto
-      run: npm run build
+      run: |
+        echo "Building with minimal config..."
+        npx vite build --config vite.config.minimal.ts || npm run build
       env:
         VITE_USE_LOCAL_DATA_ONLY: 'true'
         VITE_APP_ENV: 'production'
