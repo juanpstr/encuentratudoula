@@ -1,18 +1,20 @@
-name: 🚀 Deploy a Hostinger
+name: 🚀 Build para Hostinger Git Deploy
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch: # Permite ejecutar manualmente desde GitHub
 
 jobs:
-  deploy:
-    name: 📦 Build y Deploy
+  build-and-deploy:
+    name: 📦 Build y Push para Hostinger
     runs-on: ubuntu-latest
     
     steps:
     - name: 📥 Checkout código
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: 🟢 Setup Node.js
       uses: actions/setup-node@v4
@@ -25,32 +27,37 @@ jobs:
       
     - name: 🏗️ Build proyecto
       run: |
-        echo "Building with minimal config..."
-        npx vite build --config vite.config.minimal.ts || npm run build
+        echo "Building for production..."
+        npm run build
+        cp .htaccess dist/
       env:
         VITE_USE_LOCAL_DATA_ONLY: 'true'
         VITE_APP_ENV: 'production'
       
-    - name: 🌐 Deploy a Hostinger SFTP
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        server: 147.93.54.203
-        username: juanpstr
-        password: ${{ secrets.FTP_PASSWORD }}
-        port: 22
-        local_path: './dist/*'
-        remote_path: '/public_html'
-        sftpArgs: '-o ConnectTimeout=5'
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          **/.DS_Store
-          **/Thumbs.db
+    - name: 🌐 Deploy a rama build para Hostinger
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        
+        # Crear rama build si no existe
+        git checkout -B build
+        
+        # Limpiar archivos previos pero mantener dist/
+        find . -maxdepth 1 ! -name 'dist' ! -name '.git' ! -name '.github' ! -name '.' -exec rm -rf {} + 2>/dev/null || true
+        
+        # Mover archivos de dist/ a la raíz
+        mv dist/* .
+        mv dist/.htaccess . 2>/dev/null || true
+        rm -rf dist/
+        
+        # Commit y push
+        git add .
+        git commit -m "🚀 Auto-deploy: $(date '+%Y-%m-%d %H:%M:%S')" || exit 0
+        git push -f origin build
           
     - name: ✅ Deploy completado
       run: |
-        echo "🎉 Deploy exitoso!"
-        echo "🌐 Tu web está disponible en tu dominio de Hostinger"
-        echo "⏰ Tiempo de deploy: $(date)"
-        echo "🔐 Credenciales usadas: u948181550.encuentratudoula.com"
+        echo "🎉 Build completado y pusheado a rama 'build'!"
+        echo "🌐 Hostinger detectará el cambio automáticamente"
+        echo "⏰ Deploy time: $(date)"
+        echo "🔄 El webhook de Hostinger actualizará tu web en unos minutos"
