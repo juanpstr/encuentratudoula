@@ -77,6 +77,10 @@ const Home = () => {
             </h1>
             <p className="text-xl text-earth-700 mb-8 max-w-3xl mx-auto">
               Conecta con doulas formadas en Escuela Mística de Saberes. Acompañamiento profesional y amoroso para tu embarazo, parto, postparto y procesos de vida.
+              <br />
+              <span className="text-sm text-earth-600 mt-2 block">
+                ✨ Deploy automático configurado y funcionando
+              </span>
             </p>
             
             {/* Search Bar */}
