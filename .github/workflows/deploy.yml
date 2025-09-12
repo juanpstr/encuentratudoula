@@ -52,5 +52,6 @@ jobs:
     - name: ✅ Deploy completado
       run: |
         echo "🎉 Deploy exitoso!"
-        echo "🌐 Tu web está disponible en: encuentratudoula.com"
+        echo "🌐 Tu web está disponible en tu dominio de Hostinger"
         echo "⏰ Tiempo de deploy: $(date)"
+        echo "🔐 Credenciales usadas: u948181550.encuentratudoula.com"
