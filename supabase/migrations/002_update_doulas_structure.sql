@@ -1,0 +1,262 @@
+-- Actualizar estructura de tabla doulas para coincidir con la aplicación
+ALTER TABLE doulas 
+ADD COLUMN IF NOT EXISTS name VARCHAR(255),
+ADD COLUMN IF NOT EXISTS phone VARCHAR(50),
+ADD COLUMN IF NOT EXISTS nationality VARCHAR(100),
+ADD COLUMN IF NOT EXISTS identification_number VARCHAR(100),
+ADD COLUMN IF NOT EXISTS bio TEXT,
+ADD COLUMN IF NOT EXISTS certifications TEXT[],
+ADD COLUMN IF NOT EXISTS experience_years INTEGER DEFAULT 0,
+ADD COLUMN IF NOT EXISTS languages TEXT[],
+ADD COLUMN IF NOT EXISTS location_address TEXT,
+ADD COLUMN IF NOT EXISTS location_city VARCHAR(255),
+ADD COLUMN IF NOT EXISTS location_country VARCHAR(255),
+ADD COLUMN IF NOT EXISTS location_coordinates JSONB,
+ADD COLUMN IF NOT EXISTS contact_phone VARCHAR(50),
+ADD COLUMN IF NOT EXISTS contact_email VARCHAR(255),
+ADD COLUMN IF NOT EXISTS contact_website VARCHAR(500),
+ADD COLUMN IF NOT EXISTS services JSONB,
+ADD COLUMN IF NOT EXISTS accompaniment_types TEXT[],
+ADD COLUMN IF NOT EXISTS pricing JSONB,
+ADD COLUMN IF NOT EXISTS availability_schedule JSONB,
+ADD COLUMN IF NOT EXISTS calendly_link VARCHAR(500),
+ADD COLUMN IF NOT EXISTS profile_image_url VARCHAR(500),
+ADD COLUMN IF NOT EXISTS gallery_images TEXT[],
+ADD COLUMN IF NOT EXISTS rating DECIMAL(3,2) DEFAULT 4.5,
+ADD COLUMN IF NOT EXISTS reviews_count INTEGER DEFAULT 0,
+ADD COLUMN IF NOT EXISTS is_verified BOOLEAN DEFAULT true,
+ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT true,
+ADD COLUMN IF NOT EXISTS hourly_rate DECIMAL(10,2),
+ADD COLUMN IF NOT EXISTS currency VARCHAR(3) DEFAULT 'EUR',
+ADD COLUMN IF NOT EXISTS specialties TEXT[];
+
+-- Copiar datos de columnas antiguas a nuevas (si existen)
+UPDATE doulas SET 
+  name = COALESCE(name, nombre),
+  bio = COALESCE(bio, biografia),
+  location_address = COALESCE(location_address, direccion_completa),
+  location_city = COALESCE(location_city, ciudad),
+  location_country = COALESCE(location_country, pais),
+  location_coordinates = COALESCE(location_coordinates, json_build_object('lat', lat, 'lng', lng)),
+  contact_email = COALESCE(contact_email, email),
+  profile_image_url = COALESCE(profile_image_url, foto_perfil),
+  gallery_images = COALESCE(gallery_images, galeria_fotos),
+  specialties = COALESCE(specialties, especialidades),
+  is_active = COALESCE(is_active, activa),
+  calendly_link = COALESCE(calendly_link, enlace_calendly)
+WHERE name IS NULL OR bio IS NULL;
+
+-- Eliminar todas las doulas existentes para insertar las nuevas
+DELETE FROM doulas;
+
+-- Insertar las 6 doulas específicas
+INSERT INTO doulas (
+    name, email, phone, nationality, identification_number, bio, 
+    experience_years, rating, reviews_count, certifications, specialties, languages,
+    location_address, location_city, location_country, location_coordinates,
+    contact_phone, contact_email, services, accompaniment_types,
+    pricing, availability_schedule, profile_image_url, gallery_images,
+    is_verified, is_active, hourly_rate, currency
+) VALUES 
+
+-- 1. Liliana Perrone Spera
+(
+    'Liliana Perrone Spera',
+    'liliana.perronespera@encuentratudoula.com',
+    '+34 653030589',
+    'Venezolana',
+    'Y5772680Q',
+    'Doula especializada en sanación ancestral y medicina placentaria. Mi misión es acompañar a las familias en sus procesos de transformación desde el amor y la sabiduría ancestral. Experta en sanación de memorias uterinas y medicina sagrada.',
+    5,
+    4.9,
+    32,
+    ARRAY['Doula Certificada', 'Medicina Placentaria', 'Sanación de Memorias Uterinas', 'Especialista en Duelos'],
+    ARRAY['Sanación de Memorias Uterinas', 'Pre Concepción y Fertilidad', 'Gestación', 'Parto', 'Postparto', 'Medicina Placentaria', 'Plenipausia', 'Duelos'],
+    ARRAY['Español', 'Inglés'],
+    'Calle Hacienda de Pavones 117 2B CP 28030',
+    'Madrid',
+    'España',
+    '{"lat": 40.4168, "lng": -3.7038}',
+    '+34 653030589',
+    'liliana.perronespera@encuentratudoula.com',
+    '{"prenatal_support": true, "birth_support": true, "postpartum_support": true, "lactation_support": false, "childbirth_education": true}',
+    ARRAY['presencial', 'online'],
+    '{"consultation_fee": 80, "birth_package": 850, "hourly_rate": 65, "currency": "EUR"}',
+    '{"monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": false, "sunday": false}',
+    null,
+    ARRAY[]::TEXT[],
+    true,
+    true,
+    65,
+    'EUR'
+),
+
+-- 2. Paula Loboguerrero Rivera
+(
+    'Paula Loboguerrero Rivera',
+    'paula.loboguerrero@encuentratudoula.com',
+    '+49 1622173524',
+    'Colombiana',
+    '41589838L',
+    'Doula dedicada al acompañamiento integral de la mujer en todos sus ciclos. Mi enfoque se centra en la conexión con la ciclicidad femenina y la sabiduría ancestral. Especializada en procesos de fertilidad y sanación uterina.',
+    6,
+    4.8,
+    28,
+    ARRAY['Doula Certificada', 'Ciclicidad Femenina', 'Fertilidad Consciente', 'Sanación Uterina'],
+    ARRAY['Ciclicidad', 'Pre Concepción y Fertilidad', 'Sanación de Memorias Uterinas', 'Gestación', 'Parto', 'Postparto', 'Plenipausia', 'Duelos'],
+    ARRAY['Español', 'Alemán', 'Inglés'],
+    'Kochhann Strasse 11 CP 10249',
+    'Berlín',
+    'Alemania',
+    '{"lat": 52.5200, "lng": 13.4050}',
+    '+49 1622173524',
+    'paula.loboguerrero@encuentratudoula.com',
+    '{"prenatal_support": true, "birth_support": true, "postpartum_support": true, "lactation_support": false, "childbirth_education": true}',
+    ARRAY['presencial', 'online'],
+    '{"consultation_fee": 85, "birth_package": 900, "hourly_rate": 70, "currency": "EUR"}',
+    '{"monday": true, "tuesday": true, "wednesday": false, "thursday": true, "friday": true, "saturday": true, "sunday": false}',
+    null,
+    ARRAY[]::TEXT[],
+    true,
+    true,
+    70,
+    'EUR'
+),
+
+-- 3. Arantxa Pons Palomino
+(
+    'Arantxa Pons Palomino',
+    'arantxa.pons@encuentratudoula.com',
+    '+34 616790680',
+    'Española',
+    '20480315B',
+    'Doula española especializada en acompañamiento integral desde la pre-concepción hasta el postparto. Mi pasión es crear espacios seguros donde las familias puedan vivir su experiencia de maternidad con plenitud y confianza.',
+    4,
+    4.7,
+    19,
+    ARRAY['Doula Certificada', 'Preparación al Parto', 'Cuidado Postparto', 'Fertilidad Natural'],
+    ARRAY['Ciclicidad', 'Pre Concepción y Fertilidad', 'Sanación de Memorias Uterinas', 'Gestación', 'Parto', 'Postparto'],
+    ARRAY['Español', 'Catalán', 'Inglés'],
+    'Calle Virgen de Gracia 116 4°F Almazora CP 12550',
+    'Castellón',
+    'España',
+    '{"lat": 39.9642, "lng": -0.0370}',
+    '+34 616790680',
+    'arantxa.pons@encuentratudoula.com',
+    '{"prenatal_support": true, "birth_support": true, "postpartum_support": true, "lactation_support": true, "childbirth_education": true}',
+    ARRAY['presencial', 'online'],
+    '{"consultation_fee": 75, "birth_package": 750, "hourly_rate": 55, "currency": "EUR"}',
+    '{"monday": true, "tuesday": true, "wednesday": true, "thursday": false, "friday": true, "saturday": true, "sunday": false}',
+    null,
+    ARRAY[]::TEXT[],
+    true,
+    true,
+    55,
+    'EUR'
+),
+
+-- 4. Ivana Molčanová
+(
+    'Ivana Molčanová',
+    'ivana.molcanova@encuentratudoula.com',
+    '+421 905123456',
+    'Eslovaca',
+    '20480315B',
+    'Doula eslovaca especializada en sanación ancestral y acompañamiento durante el embarazo, parto y postparto. Mi enfoque se basa en la conexión profunda con la sabiduría femenina y los rituales de sanación.',
+    3,
+    4.6,
+    15,
+    ARRAY['Doula Certificada', 'Sanación Ancestral', 'Medicina Herbal', 'Rituales de Parto'],
+    ARRAY['Sanación de Memorias Uterinas', 'Gestación', 'Parto', 'Postparto'],
+    ARRAY['Eslovaco', 'Español', 'Inglés'],
+    'Matice Slovenskej 24 CP 08301',
+    'Sabinov',
+    'Eslovaquia',
+    '{"lat": 49.1063, "lng": 21.0984}',
+    '+421 905123456',
+    'ivana.molcanova@encuentratudoula.com',
+    '{"prenatal_support": true, "birth_support": true, "postpartum_support": true, "lactation_support": false, "childbirth_education": false}',
+    ARRAY['presencial', 'online'],
+    '{"consultation_fee": 60, "birth_package": 650, "hourly_rate": 45, "currency": "EUR"}',
+    '{"monday": true, "tuesday": false, "wednesday": true, "thursday": true, "friday": true, "saturday": false, "sunday": false}',
+    null,
+    ARRAY[]::TEXT[],
+    true,
+    true,
+    45,
+    'EUR'
+),
+
+-- 5. Jennifer García
+(
+    'Jennifer García',
+    'jennifer.garcia@encuentratudoula.com',
+    '+33 669955499',
+    'Colombiana',
+    '1143827944',
+    'Doula colombiana radicada en Francia, especializada en acompañamiento durante gestación, parto y postparto. Mi enfoque es crear un espacio de amor y confianza donde las familias puedan vivir su experiencia de maternidad con serenidad.',
+    2,
+    4.5,
+    8,
+    ARRAY['Doula Certificada', 'Preparación al Parto Natural', 'Cuidado Postparto'],
+    ARRAY['Gestación', 'Parto', 'Postparto'],
+    ARRAY['Español', 'Francés', 'Inglés'],
+    'La Choulaie 6 56140',
+    'Tréal',
+    'Francia',
+    '{"lat": 47.7167, "lng": -2.3167}',
+    '+33 669955499',
+    'jennifer.garcia@encuentratudoula.com',
+    '{"prenatal_support": true, "birth_support": true, "postpartum_support": true, "lactation_support": false, "childbirth_education": false}',
+    ARRAY['presencial', 'online'],
+    '{"consultation_fee": 70, "birth_package": 700, "hourly_rate": 50, "currency": "EUR"}',
+    '{"monday": true, "tuesday": true, "wednesday": true, "thursday": false, "friday": true, "saturday": false, "sunday": false}',
+    null,
+    ARRAY[]::TEXT[],
+    true,
+    true,
+    50,
+    'EUR'
+),
+
+-- 6. Nathaly Gattas Bultaif
+(
+    'Nathaly Gattas Bultaif',
+    'nathaly.gattas@encuentratudoula.com',
+    '+351 965730239',
+    'Colombiana',
+    '1107057031',
+    'Doula especializada en acompañamiento durante la preconcepción. Mi misión es guiar a las mujeres en su camino hacia la maternidad consciente, preparando el cuerpo, la mente y el espíritu para recibir nueva vida.',
+    2,
+    4.8,
+    12,
+    ARRAY['Doula Certificada', 'Fertilidad Consciente', 'Nutrición Pre-concepcional'],
+    ARRAY['Preconcepción'],
+    ARRAY['Español', 'Portugués', 'Inglés'],
+    'Lisboa',
+    'Lisboa',
+    'Portugal',
+    '{"lat": 38.7223, "lng": -9.1393}',
+    '+351 965730239',
+    'nathaly.gattas@encuentratudoula.com',
+    '{"prenatal_support": true, "birth_support": false, "postpartum_support": false, "lactation_support": false, "childbirth_education": true}',
+    ARRAY['presencial', 'online'],
+    '{"consultation_fee": 65, "birth_package": 0, "hourly_rate": 45, "currency": "EUR"}',
+    '{"monday": true, "tuesday": true, "wednesday": false, "thursday": true, "friday": true, "saturday": true, "sunday": false}',
+    null,
+    ARRAY[]::TEXT[],
+    true,
+    true,
+    45,
+    'EUR'
+);
+
+-- Actualizar índices para las nuevas columnas
+CREATE INDEX IF NOT EXISTS idx_doulas_name ON doulas(name);
+CREATE INDEX IF NOT EXISTS idx_doulas_location_city ON doulas(location_city);
+CREATE INDEX IF NOT EXISTS idx_doulas_location_country ON doulas(location_country);
+CREATE INDEX IF NOT EXISTS idx_doulas_is_active ON doulas(is_active);
+CREATE INDEX IF NOT EXISTS idx_doulas_specialties_new ON doulas USING GIN(specialties);
+CREATE INDEX IF NOT EXISTS idx_doulas_languages ON doulas USING GIN(languages);
+CREATE INDEX IF NOT EXISTS idx_doulas_accompaniment_types ON doulas USING GIN(accompaniment_types);
+

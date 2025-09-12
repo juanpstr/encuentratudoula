@@ -1,0 +1,43 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer protective hands circle -->
+  <g stroke="#3F2F2F" stroke-width="8" fill="none">
+    <!-- Top hand -->
+    <path d="M 100 80 Q 150 40 200 50 Q 250 40 300 80" stroke-linecap="round"/>
+    <!-- Right hand -->
+    <path d="M 320 100 Q 360 150 350 200 Q 360 250 320 300" stroke-linecap="round"/>
+    <!-- Bottom hand -->
+    <path d="M 300 220 Q 250 260 200 250 Q 150 260 100 220" stroke-linecap="round"/>
+    <!-- Left hand -->
+    <path d="M 80 200 Q 40 150 50 100 Q 40 50 80 0" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Inner circle -->
+  <circle cx="200" cy="150" r="60" stroke="#3F2F2F" stroke-width="4" fill="none"/>
+  
+  <!-- Tree of life -->
+  <g fill="#3F2F2F">
+    <!-- Trunk -->
+    <rect x="195" y="140" width="10" height="30" rx="2"/>
+    
+    <!-- Roots -->
+    <path d="M 185 165 Q 180 175 175 180 M 185 165 Q 190 175 195 180 M 205 165 Q 210 175 215 180 M 215 165 Q 220 175 225 180" 
+          stroke="#3F2F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Main branches -->
+    <circle cx="185" cy="125" r="8"/>
+    <circle cx="200" cy="115" r="10"/>
+    <circle cx="215" cy="125" r="8"/>
+    <circle cx="175" cy="135" r="6"/>
+    <circle cx="225" cy="135" r="6"/>
+    <circle cx="170" cy="120" r="5"/>
+    <circle cx="230" cy="120" r="5"/>
+    <circle cx="190" cy="105" r="6"/>
+    <circle cx="210" cy="105" r="6"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="280" text-anchor="middle" font-family="serif" font-size="24" font-weight="bold" fill="#3F2F2F">
+    ENCUENTRATUDOULA.COM
+  </text>
+</svg>
+

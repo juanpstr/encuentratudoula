@@ -1,0 +1,53 @@
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo exterior de manos protectoras -->
+  <g stroke="#3F2F2F" stroke-width="12" fill="none" stroke-linecap="round">
+    <!-- Mano superior -->
+    <path d="M 150 80 Q 200 20 300 30 Q 400 20 450 80" />
+    <!-- Mano derecha -->
+    <path d="M 470 120 Q 530 170 520 220 Q 530 270 470 320" />
+    <!-- Mano inferior -->
+    <path d="M 450 340 Q 400 400 300 390 Q 200 400 150 340" />
+    <!-- Mano izquierda -->
+    <path d="M 130 320 Q 70 270 80 220 Q 70 170 130 120" />
+  </g>
+  
+  <!-- Círculo interior -->
+  <circle cx="300" cy="210" r="90" stroke="#3F2F2F" stroke-width="6" fill="none"/>
+  
+  <!-- Árbol de la vida en el centro -->
+  <g fill="#3F2F2F">
+    <!-- Tronco -->
+    <rect x="290" y="190" width="20" height="50" rx="3"/>
+    
+    <!-- Raíces -->
+    <g stroke="#3F2F2F" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M 275 235 Q 260 250 245 260" />
+      <path d="M 285 235 Q 280 250 275 260" />
+      <path d="M 315 235 Q 320 250 325 260" />
+      <path d="M 325 235 Q 340 250 355 260" />
+    </g>
+    
+    <!-- Copa del árbol - círculos orgánicos -->
+    <circle cx="275" cy="170" r="12"/>
+    <circle cx="300" cy="155" r="15"/>
+    <circle cx="325" cy="170" r="12"/>
+    <circle cx="260" cy="185" r="9"/>
+    <circle cx="340" cy="185" r="9"/>
+    <circle cx="250" cy="165" r="7"/>
+    <circle cx="350" cy="165" r="7"/>
+    <circle cx="285" cy="140" r="9"/>
+    <circle cx="315" cy="140" r="9"/>
+    <circle cx="270" cy="150" r="6"/>
+    <circle cx="330" cy="150" r="6"/>
+  </g>
+  
+  <!-- Texto -->
+  <text x="300" y="40" text-anchor="middle" 
+        font-family="Georgia, serif" 
+        font-size="28" 
+        font-weight="bold" 
+        fill="#3F2F2F">
+    ENCUENTRATUDOULA.COM
+  </text>
+</svg>
+

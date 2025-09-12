@@ -1,0 +1,52 @@
+name: 🚀 Deploy a Hostinger
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch: # Permite ejecutar manualmente desde GitHub
+
+jobs:
+  deploy:
+    name: 📦 Build y Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout código
+      uses: actions/checkout@v4
+    
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📦 Instalar dependencias
+      run: npm ci
+      
+    - name: 🏗️ Build proyecto
+      run: npm run build
+      env:
+        VITE_USE_LOCAL_DATA_ONLY: 'true'
+        VITE_APP_ENV: 'production'
+      
+    - name: 🌐 Deploy a Hostinger FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: 147.93.54.203
+        username: u948181550.encuentratudoula.com
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        local-dir: ./dist/
+        server-dir: ./public_html/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.DS_Store
+          **/Thumbs.db
+          
+    - name: ✅ Deploy completado
+      run: |
+        echo "🎉 Deploy exitoso!"
+        echo "🌐 Tu web está disponible en: encuentratudoula.com"
+        echo "⏰ Tiempo de deploy: $(date)"
