@@ -31,17 +31,16 @@ jobs:
         VITE_USE_LOCAL_DATA_ONLY: 'true'
         VITE_APP_ENV: 'production'
       
-    - name: 🌐 Deploy a Hostinger FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - name: 🌐 Deploy a Hostinger SFTP
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
         server: 147.93.54.203
         username: juanpstr
         password: ${{ secrets.FTP_PASSWORD }}
-        port: 21
-        local-dir: ./dist/
-        server-dir: ./public_html/
-        dangerous-clean-slate: false
-        log-level: verbose
+        port: 22
+        local_path: './dist/*'
+        remote_path: '/public_html'
+        sftpArgs: '-o ConnectTimeout=5'
         exclude: |
           **/.git*
           **/.git*/**
