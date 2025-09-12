@@ -1,6 +1,6 @@
 import { supabase } from '../services/supabase'
 import { allDoulas } from '../data/allDoulas'
-import { transformDoulaForDB } from './adapters.simple'
+import { transformDoulaForDB } from './adapters'
 
 export async function migrateDoulas() {
   try {

@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Doula } from '../types'
-import { transformDoulaFromDB, transformDoulaForDB } from '../utils/adapters.simple'
+import { transformDoulaFromDB, transformDoulaForDB } from '../utils/adapters'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
