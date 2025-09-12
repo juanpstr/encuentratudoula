@@ -9,12 +9,16 @@ jobs:
   build-and-deploy:
     name: 📦 Build y Push para Hostinger
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
     
     steps:
     - name: 📥 Checkout código
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
     
     - name: 🟢 Setup Node.js
       uses: actions/setup-node@v4
