@@ -34,12 +34,13 @@ jobs:
     - name: 🌐 Deploy a Hostinger FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: 147.93.54.203
+        server: ftp://147.93.54.203
         username: juanpstr
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
         local-dir: ./dist/
-        server-dir: ./public_html/
+        server-dir: /public_html/
+        dangerous-clean-slate: false
         exclude: |
           **/.git*
           **/.git*/**
