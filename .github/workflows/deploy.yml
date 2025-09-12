@@ -35,7 +35,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: 147.93.54.203
-        username: u948181550.encuentratudoula.com
+        username: juanpstr
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
         local-dir: ./dist/
