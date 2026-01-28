@@ -4,6 +4,7 @@ export const allDoulas: Doula[] = [
   // Solo las 6 doulas proporcionadas por el usuario
   {
     id: '1',
+    slug: 'liliana-perrone-spera',
     name: 'Liliana Perrone Spera',
     email: 'liliana.perronespera@encuentratudoula.com',
     phone: '+34 653030589',
@@ -11,8 +12,8 @@ export const allDoulas: Doula[] = [
     identification_number: 'Y5772680Q',
     bio: 'Doula especializada en sanación ancestral y medicina placentaria. Mi misión es acompañar a las familias en sus procesos de transformación desde el amor y la sabiduría ancestral. Experta en sanación de memorias uterinas y medicina sagrada.',
     experience_years: 5,
-    rating: 4.9,
-    reviews_count: 32,
+    rating: 5.0,
+    reviews_count: 0,
     certifications: ['Doula Certificada', 'Medicina Placentaria', 'Sanación de Memorias Uterinas', 'Especialista en Duelos'],
     specialties: ['Sanación de Memorias Uterinas', 'Pre Concepción y Fertilidad', 'Gestación', 'Parto', 'Postparto', 'Medicina Placentaria', 'Plenipausia', 'Duelos'],
     languages: ['Español', 'Inglés'],
@@ -59,6 +60,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '2',
+    slug: 'paula-loboguerrero-rivera',
     name: 'Paula Loboguerrero Rivera',
     email: 'paula.loboguerrero@encuentratudoula.com',
     phone: '+49 1622173524',
@@ -66,8 +68,8 @@ export const allDoulas: Doula[] = [
     identification_number: '41589838L',
     bio: 'Doula dedicada al acompañamiento integral de la mujer en todos sus ciclos. Mi enfoque se centra en la conexión con la ciclicidad femenina y la sabiduría ancestral. Especializada en procesos de fertilidad y sanación uterina.',
     experience_years: 6,
-    rating: 4.8,
-    reviews_count: 28,
+    rating: 5.0,
+    reviews_count: 0,
     certifications: ['Doula Certificada', 'Ciclicidad Femenina', 'Fertilidad Consciente', 'Sanación Uterina'],
     specialties: ['Ciclicidad', 'Pre Concepción y Fertilidad', 'Sanación de Memorias Uterinas', 'Gestación', 'Parto', 'Postparto', 'Plenipausia', 'Duelos'],
     languages: ['Español', 'Alemán', 'Inglés'],
@@ -114,6 +116,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '3',
+    slug: 'arantxa-pons-palomino',
     name: 'Arantxa Pons Palomino',
     email: 'arantxa.pons@encuentratudoula.com',
     phone: '+34 616790680',
@@ -121,8 +124,8 @@ export const allDoulas: Doula[] = [
     identification_number: '20480315B',
     bio: 'Doula española especializada en acompañamiento integral desde la pre-concepción hasta el postparto. Mi pasión es crear espacios seguros donde las familias puedan vivir su experiencia de maternidad con plenitud y confianza.',
     experience_years: 4,
-    rating: 4.7,
-    reviews_count: 19,
+    rating: 5.0,
+    reviews_count: 0,
     certifications: ['Doula Certificada', 'Preparación al Parto', 'Cuidado Postparto', 'Fertilidad Natural'],
     specialties: ['Ciclicidad', 'Pre Concepción y Fertilidad', 'Sanación de Memorias Uterinas', 'Gestación', 'Parto', 'Postparto'],
     languages: ['Español', 'Catalán', 'Inglés'],
@@ -169,6 +172,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '4',
+    slug: 'ivana-molcanova',
     name: 'Ivana Molčanová',
     email: 'ivana.molcanova@encuentratudoula.com',
     phone: '+421 905123456',
@@ -176,8 +180,8 @@ export const allDoulas: Doula[] = [
     identification_number: '20480315B',
     bio: 'Doula eslovaca especializada en sanación ancestral y acompañamiento durante el embarazo, parto y postparto. Mi enfoque se basa en la conexión profunda con la sabiduría femenina y los rituales de sanación.',
     experience_years: 3,
-    rating: 4.6,
-    reviews_count: 15,
+    rating: 5.0,
+    reviews_count: 0,
     certifications: ['Doula Certificada', 'Sanación Ancestral', 'Medicina Herbal', 'Rituales de Parto'],
     specialties: ['Sanación de Memorias Uterinas', 'Gestación', 'Parto', 'Postparto'],
     languages: ['Eslovaco', 'Español', 'Inglés'],
@@ -224,6 +228,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '5',
+    slug: 'jennifer-garcia',
     name: 'Jennifer García',
     email: 'jennifer.garcia@encuentratudoula.com',
     phone: '+33 669955499',
@@ -231,8 +236,8 @@ export const allDoulas: Doula[] = [
     identification_number: '1143827944',
     bio: 'Doula colombiana radicada en Francia, especializada en acompañamiento durante gestación, parto y postparto. Mi enfoque es crear un espacio de amor y confianza donde las familias puedan vivir su experiencia de maternidad con serenidad.',
     experience_years: 2,
-    rating: 4.5,
-    reviews_count: 8,
+    rating: 5.0,
+    reviews_count: 0,
     certifications: ['Doula Certificada', 'Preparación al Parto Natural', 'Cuidado Postparto'],
     specialties: ['Gestación', 'Parto', 'Postparto'],
     languages: ['Español', 'Francés', 'Inglés'],
@@ -279,6 +284,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '6',
+    slug: 'nathaly-gattas-bultaif',
     name: 'Nathaly Gattas Bultaif',
     email: 'nathaly.gattas@encuentratudoula.com',
     phone: '+351 965730239',
@@ -286,8 +292,8 @@ export const allDoulas: Doula[] = [
     identification_number: '1107057031',
     bio: 'Doula especializada en acompañamiento durante la preconcepción. Mi misión es guiar a las mujeres en su camino hacia la maternidad consciente, preparando el cuerpo, la mente y el espíritu para recibir nueva vida.',
     experience_years: 2,
-    rating: 4.8,
-    reviews_count: 12,
+    rating: 5.0,
+    reviews_count: 0,
     certifications: ['Doula Certificada', 'Fertilidad Consciente', 'Nutrición Pre-concepcional'],
     specialties: ['Preconcepción'],
     languages: ['Español', 'Portugués', 'Inglés'],
@@ -335,6 +341,7 @@ export const allDoulas: Doula[] = [
   // Nuevas doulas agregadas
   {
     id: '7',
+    slug: 'alexandra-raposo',
     name: 'Alexandra Raposo',
     email: 'alexandra.raposo@encuentratudoula.com',
     phone: '+1 917 968-7695',
@@ -390,6 +397,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '8',
+    slug: 'eugenia-estefania-tovar-guzman',
     name: 'Eugenia Estefanía Tovar Guzmán',
     email: 'eugenia.tovar@encuentratudoula.com',
     phone: '+506 6027 1612',
@@ -445,6 +453,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '9',
+    slug: 'laura-juliana-alcarcel-rodriguez',
     name: 'Laura Juliana Alcárcel Rodriguez',
     email: 'laura.alcarcel@encuentratudoula.com',
     phone: '+57 3137718569',
@@ -500,6 +509,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '10',
+    slug: 'maria-camila-arias-carreno',
     name: 'María Camila Arias Carreño',
     email: 'mariacamila.arias@encuentratudoula.com',
     phone: '+57 3165288832',
@@ -555,6 +565,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '11',
+    slug: 'maialen-lopez-abrego',
     name: 'Maialen López Abrego',
     email: 'maialen.lopez@encuentratudoula.com',
     phone: '+34 696 88 80 10',
@@ -610,6 +621,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '12',
+    slug: 'maya-y-diaz-lugo',
     name: 'Maya Y Diaz Lugo',
     email: 'maya.diaz@encuentratudoula.com',
     phone: '+1 (786) 395-4936',
@@ -665,6 +677,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '13',
+    slug: 'yaritza-m-santiago-figueroa',
     name: 'Yaritza M. Santiago Figueroa',
     email: 'yaritza.santiago@encuentratudoula.com',
     phone: '+1-787-677-4786',
@@ -720,6 +733,7 @@ export const allDoulas: Doula[] = [
   },
   {
     id: '14',
+    slug: 'natalia-tomas-roncal',
     name: 'Natalia Tomás Roncal',
     email: 'natalia.tomas@encuentratudoula.com',
     phone: '+34 611884485',
@@ -775,54 +789,13 @@ export const allDoulas: Doula[] = [
   }
 ]
 
-export const sampleReviews = [
-  {
-    id: '1',
-    doula_id: '1',
-    client_name: 'Laura P.',
-    rating: 5,
-    comment: 'María fue increíble durante todo el proceso. Su apoyo emocional y conocimiento técnico nos dieron mucha tranquilidad.',
-    date: '2024-01-10'
-  },
-  {
-    id: '2',
-    doula_id: '1',
-    client_name: 'Carlos y Elena',
-    rating: 5,
-    comment: 'No podríamos haber pedido mejor acompañamiento. María estuvo presente en cada momento que la necesitamos.',
-    date: '2024-01-05'
-  },
-  {
-    id: '3',
-    doula_id: '2',
-    client_name: 'Marta S.',
-    rating: 5,
-    comment: 'Carmen me ayudó a tener el parto en agua que siempre soñé. Su experiencia y calma fueron fundamentales.',
-    date: '2024-01-12'
-  },
-  {
-    id: '4',
-    doula_id: '6',
-    client_name: 'Patricia M.',
-    rating: 5,
-    comment: 'Liliana me acompañó en mi proceso de sanación uterina. Su sabiduría ancestral fue transformadora.',
-    date: '2024-01-20'
-  },
-  {
-    id: '5',
-    doula_id: '7',
-    client_name: 'Andrea K.',
-    rating: 5,
-    comment: 'Paula me guió hermosamente en mi proceso de fertilidad. Su conocimiento sobre ciclicidad femenina es excepcional.',
-    date: '2024-01-25'
-  }
-]
+export const sampleReviews: { id: string; doula_id: string; client_name: string; rating: number; comment: string; date: string }[] = []
 
 export const sampleStats = {
   totalDoulas: 14,
   activeDoulas: 14,
-  averageRating: 4.8,
-  totalReviews: 114,
+  averageRating: 5.0,
+  totalReviews: 0,
   newDoulasThisMonth: 8,
   citiesCovered: 13,
   languagesSupported: 10,

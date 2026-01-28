@@ -423,7 +423,7 @@ const Doulas = () => {
 
                   {/* Action Button */}
                   <Link
-                    to={`/doula/${doula.id}`}
+                    to={`/doula/${doula.slug}`}
                     className="block w-full bg-earth-600 text-white text-center py-3 rounded-lg hover:bg-earth-700 transition-colors font-medium"
                   >
                     Ver Perfil

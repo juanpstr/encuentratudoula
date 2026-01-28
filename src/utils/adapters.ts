@@ -1,11 +1,25 @@
 import type { Doula } from '../types'
 // import type { Database } from '../types/database' // No se usa en versión simplificada
 
+// Función para generar slug desde nombre
+function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Quitar acentos
+    .replace(/[^a-z0-9\s-]/g, '') // Solo letras, números, espacios y guiones
+    .replace(/\s+/g, '-') // Espacios a guiones
+    .replace(/-+/g, '-') // Múltiples guiones a uno
+    .trim()
+}
+
 // Función simplificada para transformar doula desde DB
 export function transformDoulaFromDB(dbDoula: any): Doula {
+  const name = dbDoula.name || ''
   return {
     id: dbDoula.id,
-    name: dbDoula.name || '',
+    slug: dbDoula.slug || generateSlug(name),
+    name: name,
     email: dbDoula.email || '',
     phone: dbDoula.phone || '',
     bio: dbDoula.bio || '',

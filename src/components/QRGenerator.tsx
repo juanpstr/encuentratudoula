@@ -4,15 +4,15 @@ import QRCode from 'qrcode'
 import { Download, QrCode, ExternalLink } from 'lucide-react'
 
 interface QRGeneratorProps {
-  doulaId: string
+  doulaSlug: string
   doulaName: string
 }
 
-const QRGenerator = ({ doulaId, doulaName }: QRGeneratorProps) => {
+const QRGenerator = ({ doulaSlug, doulaName }: QRGeneratorProps) => {
   const [qrDataUrl, setQrDataUrl] = useState<string>('')
   const [showQR, setShowQR] = useState(false)
 
-  const doulaUrl = `${window.location.origin}/doula/${doulaId}`
+  const doulaUrl = `${window.location.origin}/doula/${doulaSlug}`
 
   useEffect(() => {
     const generateQR = async () => {
@@ -82,7 +82,7 @@ const QRGenerator = ({ doulaId, doulaName }: QRGeneratorProps) => {
                   Descargar QR
                 </button>
                 <Link
-                  to={`/doula/${doulaId}/qr`}
+                  to={`/doula/${doulaSlug}/qr`}
                   className="flex items-center gap-2 bg-sage-600 text-white py-2 px-4 rounded-lg hover:bg-sage-700 transition-colors text-sm"
                 >
                   <ExternalLink className="h-4 w-4" />

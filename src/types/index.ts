@@ -1,5 +1,6 @@
 export interface Doula {
   id: string;
+  slug: string;
   name: string;
   email: string;
   phone: string;

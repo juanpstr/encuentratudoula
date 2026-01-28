@@ -600,7 +600,7 @@ const DoulaProfile = () => {
             </div>
 
             {/* QR Code Generator */}
-            <QRGenerator doulaId={doula.id} doulaName={doula.name} />
+            <QRGenerator doulaSlug={doula.slug} doulaName={doula.name} />
           </div>
         </div>
       </div>

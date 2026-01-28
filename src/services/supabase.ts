@@ -185,7 +185,8 @@ export const getDoulaById = async (id: string) => {
   
   // Forzar uso de datos locales por ahora
   const { sampleDoulas } = await import('../data/sampleData')
-  const localDoula = sampleDoulas.find(d => d.id === id)
+  // Buscar por slug o por id
+  const localDoula = sampleDoulas.find(d => d.slug === id || d.id === id)
   console.log(`👤 Found doula: ${localDoula ? localDoula.name : 'Not found'}`)
   return localDoula || null
 

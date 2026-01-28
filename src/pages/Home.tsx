@@ -56,10 +56,10 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-earth-100 via-sage-50 to-warm-50 py-20 overflow-hidden">
         {/* Hero Background Image */}
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-30">
           <img 
-            src="https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=mystical%20ancestral%20doula%20ceremony%20with%20pregnant%20woman%20in%20golden%20earth%20tones%20sacred%20ritual%20candles%20flowers%20peaceful%20spiritual%20atmosphere&image_size=landscape_16_9" 
-            alt="Ceremonia ancestral de doula" 
+            src="/hero-doula.png" 
+            alt="Doula Ancestral" 
             className="w-full h-full object-cover"
           />
         </div>
@@ -231,15 +231,10 @@ const Home = () => {
             </div>
             <div className="relative">
               <img 
-                src="https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=ancestral%20doula%20ceremony%20sacred%20birth%20ritual%20candles%20herbs%20golden%20light%20mystical%20atmosphere%20maternal%20wisdom%20earth%20tones%20spiritual%20healing%20ancient%20traditions&image_size=portrait_4_3"
-                alt="Ceremonia ancestral de doula"
+                src="/hero-doula.png"
+                alt="Doula Ancestral"
                 className="rounded-xl shadow-lg w-full"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-earth-900/20 to-transparent rounded-xl"></div>
             </div>
           </div>
         </div>
