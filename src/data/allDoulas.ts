@@ -500,7 +500,7 @@ export const allDoulas: Doula[] = [
       saturday: true,
       sunday: false
     },
-    profile_image: '',
+    profile_image: '/doulas/Laura.jpg',
     gallery_images: [],
     is_verified: true,
     is_active: true,
