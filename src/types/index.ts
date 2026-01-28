@@ -69,9 +69,14 @@ export interface Review {
   id: string;
   doula_id: string;
   client_name: string;
+  client_email?: string;
   rating: number;
   comment: string;
+  service_type?: string;
+  is_approved: boolean;
+  is_public: boolean;
   created_at: string;
+  updated_at?: string;
 }
 
 export interface SearchFilters {

@@ -253,3 +253,163 @@ export const searchDoulas = async (filters: {
 
   return (data || []).map(transformDoulaFromDB)
 }
+
+// ============ REVIEWS / TESTIMONIOS ============
+
+import type { Review } from '../types'
+
+// Obtener reseñas de una doula (solo aprobadas y públicas)
+export const getReviewsByDoulaId = async (doulaId: string): Promise<Review[]> => {
+  console.log(`📝 getReviewsByDoulaId called for doula: ${doulaId}`)
+  
+  // Por ahora usar datos locales
+  const { sampleReviews } = await import('../data/allDoulas')
+  const reviews = sampleReviews.filter(r => r.doula_id === doulaId)
+  
+  // Transformar al formato completo de Review
+  return reviews.map(r => ({
+    id: r.id,
+    doula_id: r.doula_id,
+    client_name: r.client_name,
+    rating: r.rating,
+    comment: r.comment,
+    is_approved: true,
+    is_public: true,
+    created_at: r.date
+  }))
+
+  /* TODO: Reactivar cuando Supabase esté configurado
+  try {
+    const { data, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('doula_id', doulaId)
+      .eq('is_approved', true)
+      .eq('is_public', true)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching reviews:', error)
+      // Fallback a datos locales
+      const { sampleReviews } = await import('../data/allDoulas')
+      return sampleReviews.filter(r => r.doula_id === doulaId)
+    }
+
+    return data || []
+  } catch (error) {
+    console.error('Error connecting to Supabase for reviews:', error)
+    const { sampleReviews } = await import('../data/allDoulas')
+    return sampleReviews.filter(r => r.doula_id === doulaId)
+  }
+  */
+}
+
+// Crear una nueva reseña (formulario público)
+export const createReview = async (review: {
+  doula_id: string
+  client_name: string
+  client_email?: string
+  rating: number
+  comment: string
+  service_type?: string
+}): Promise<Review> => {
+  console.log('📝 createReview called:', review)
+  
+  // Por ahora simular la creación
+  const newReview: Review = {
+    id: `review-${Date.now()}`,
+    doula_id: review.doula_id,
+    client_name: review.client_name,
+    client_email: review.client_email,
+    rating: review.rating,
+    comment: review.comment,
+    service_type: review.service_type,
+    is_approved: false, // Requiere aprobación
+    is_public: true,
+    created_at: new Date().toISOString()
+  }
+  
+  console.log('✅ Review created (pending approval):', newReview)
+  return newReview
+
+  /* TODO: Reactivar cuando Supabase esté configurado
+  const { data, error } = await supabase
+    .from('reviews')
+    .insert({
+      doula_id: review.doula_id,
+      client_name: review.client_name,
+      client_email: review.client_email,
+      rating: review.rating,
+      comment: review.comment,
+      service_type: review.service_type,
+      is_approved: false, // Requiere aprobación de la doula
+      is_public: true
+    })
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Error creating review:', error)
+    throw error
+  }
+
+  return data
+  */
+}
+
+// Obtener todas las reseñas pendientes de aprobación (para admin)
+export const getPendingReviews = async (): Promise<Review[]> => {
+  console.log('📝 getPendingReviews called')
+  
+  // Por ahora retornar array vacío
+  return []
+
+  /* TODO: Reactivar cuando Supabase esté configurado
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*, doulas(name)')
+    .eq('is_approved', false)
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching pending reviews:', error)
+    throw error
+  }
+
+  return data || []
+  */
+}
+
+// Aprobar una reseña (admin)
+export const approveReview = async (reviewId: string): Promise<void> => {
+  console.log('✅ approveReview called for:', reviewId)
+  
+  /* TODO: Reactivar cuando Supabase esté configurado
+  const { error } = await supabase
+    .from('reviews')
+    .update({ is_approved: true })
+    .eq('id', reviewId)
+
+  if (error) {
+    console.error('Error approving review:', error)
+    throw error
+  }
+  */
+}
+
+// Rechazar/eliminar una reseña (admin)
+export const deleteReview = async (reviewId: string): Promise<void> => {
+  console.log('❌ deleteReview called for:', reviewId)
+  
+  /* TODO: Reactivar cuando Supabase esté configurado
+  const { error } = await supabase
+    .from('reviews')
+    .delete()
+    .eq('id', reviewId)
+
+  if (error) {
+    console.error('Error deleting review:', error)
+    throw error
+  }
+  */
+}

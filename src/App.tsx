@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Doulas from './pages/Doulas'
 import DoulaProfile from './pages/DoulaProfile'
 import DoulaQR from './pages/DoulaQR'
+import DejarTestimonio from './pages/DejarTestimonio'
 import SobreNosotros from './pages/SobreNosotros'
 import PoliticaPrivacidad from './pages/legal/PoliticaPrivacidad'
 import TerminosCondiciones from './pages/legal/TerminosCondiciones'
@@ -46,6 +47,7 @@ function App() {
           <Route path="/doulas" element={<Doulas />} />
           <Route path="/doula/:id" element={<DoulaProfile />} />
           <Route path="/doula/:id/qr" element={<DoulaQR />} />
+          <Route path="/doula/:id/testimonio" element={<DejarTestimonio />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
           <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />

@@ -19,21 +19,25 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-earth-300 mb-4 max-w-md">
-              Conectamos familias con doulas certificadas de la Escuela Mística de Saberes. 
+              Conectamos familias con Doulas Certificadas de la Escuela Ancestral de Doulas. 
               Acompañamiento profesional y amoroso en todos los procesos de la vida.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-earth-400" />
-                <span className="text-earth-300">info@encuentratudoula.com</span>
+                <a href="mailto:info@encuentratudoula.com" className="text-earth-300 hover:text-white transition-colors">
+                  info@encuentratudoula.com
+                </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-earth-400" />
-                <span className="text-earth-300">+34 900 123 456</span>
+                <a href="tel:+34621412457" className="text-earth-300 hover:text-white transition-colors">
+                  +34 621 412 457
+                </a>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-earth-400" />
-                <span className="text-earth-300">España - Internacional</span>
+                <span className="text-earth-300">Málaga, España</span>
               </div>
             </div>
           </div>

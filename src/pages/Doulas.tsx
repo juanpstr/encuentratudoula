@@ -121,10 +121,10 @@ const Doulas = () => {
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-3xl font-bold text-earth-900 mb-4">
-            Círculo Sagrado de Doulas Ancestrales
+            Directorio de Doulas Ancestrales
           </h1>
           <p className="text-lg text-earth-600 mb-6">
-            Conecta con las guardianas de la sabiduría ancestral que honrarán tu proceso sagrado de dar vida
+            Encuentra a tu Doula Ancestral certificada por la Escuela Ancestral de Doulas para acompañarte en tu proceso
           </p>
 
           {/* Search and Filters */}
@@ -134,7 +134,7 @@ const Doulas = () => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-earth-400 h-5 w-5" />
                 <input
                   type="text"
-                  placeholder="Busca tu guía ancestral por nombre, territorio sagrado o don especial..."
+                  placeholder="Buscar por nombre, ciudad, país o especialidad..."
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   onKeyPress={handleKeyPress}
@@ -164,11 +164,11 @@ const Doulas = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-earth-700 mb-2">
-                      Territorio Sagrado
+                      Ubicación
                     </label>
                     <input
                       type="text"
-                      placeholder="Tierra ancestral o región"
+                      placeholder="Ciudad o país"
                       value={localFilters.location}
                       onChange={(e) => setLocalFilters({...localFilters, location: e.target.value})}
                       className="w-full px-3 py-2 border border-earth-300 rounded-md focus:ring-2 focus:ring-earth-500 focus:border-transparent outline-none"
@@ -176,23 +176,28 @@ const Doulas = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-earth-700 mb-2">
-                      Dones Ancestrales
+                      Especialidad
                     </label>
                     <select
                       value={localFilters.specialties}
                       onChange={(e) => setLocalFilters({...localFilters, specialties: e.target.value})}
                       className="w-full px-3 py-2 border border-earth-300 rounded-md focus:ring-2 focus:ring-earth-500 focus:border-transparent outline-none"
                     >
-                      <option value="">Todos los dones sagrados</option>
-                      <option value="parto">Guardiana del Nacimiento</option>
-                      <option value="postparto">Cuidadora del Puerperio</option>
-                      <option value="lactancia">Sabia de la Lactancia</option>
-                      <option value="prenatal">Guía Prenatal</option>
+                      <option value="">Todas las especialidades</option>
+                      <option value="Ciclicidad">Ciclicidad</option>
+                      <option value="Sanación de Memorias Uterinas">Sanación de Memorias Uterinas</option>
+                      <option value="Pre Concepción y Fertilidad">Preconcepción y Fertilidad</option>
+                      <option value="Gestación">Gestación</option>
+                      <option value="Parto">Parto</option>
+                      <option value="Postparto">Postparto</option>
+                      <option value="Medicina Placentaria">Medicina Placentaria</option>
+                      <option value="Plenipausia">Plenipausia</option>
+                      <option value="Duelos">Duelos</option>
                     </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-earth-700 mb-2">
-                      Lenguas Sagradas
+                      Idiomas
                     </label>
                     <select
                       value={localFilters.languages}
@@ -208,18 +213,18 @@ const Doulas = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-earth-700 mb-2">
-                      Sabiduría Acumulada (años)
+                      Años de Experiencia
                     </label>
                     <select
                       value={localFilters.experience_years}
                       onChange={(e) => setLocalFilters({...localFilters, experience_years: parseInt(e.target.value)})}
                       className="w-full px-3 py-2 border border-earth-300 rounded-md focus:ring-2 focus:ring-earth-500 focus:border-transparent outline-none"
                     >
-                      <option value={0}>Toda sabiduría es valiosa</option>
-                      <option value={1}>1+ años de práctica</option>
-                      <option value={3}>3+ años de experiencia</option>
-                      <option value={5}>5+ años de sabiduría</option>
-                      <option value={10}>10+ años de maestría</option>
+                      <option value={0}>Cualquier experiencia</option>
+                      <option value={1}>1+ años</option>
+                      <option value={3}>3+ años</option>
+                      <option value={5}>5+ años</option>
+                      <option value={10}>10+ años</option>
                     </select>
                   </div>
                   <div>
@@ -278,7 +283,7 @@ const Doulas = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-6">
           <p className="text-earth-600">
-            {isLoading ? 'Conectando con las guardianas...' : `${filteredDoulas.length} guardianas ancestrales disponibles`}
+            {isLoading ? 'Cargando doulas...' : `${filteredDoulas.length} Doulas Ancestrales disponibles`}
           </p>
         </div>
 
@@ -298,10 +303,10 @@ const Doulas = () => {
           <div className="text-center py-12">
             <Users className="h-16 w-16 text-earth-300 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-earth-900 mb-2">
-              No se encontraron guardianas ancestrales
+              No se encontraron doulas
             </h3>
             <p className="text-earth-600 mb-4">
-              Ajusta tu búsqueda para encontrar a tu guía espiritual perfecta
+              Ajusta tu búsqueda para encontrar a tu Doula Ancestral ideal
             </p>
             <button
               onClick={clearFilters}
@@ -318,17 +323,20 @@ const Doulas = () => {
                   {/* Profile Image */}
                   <div className="text-center mb-4">
                     <div className="w-24 h-24 bg-gradient-to-br from-earth-200 to-sage-200 rounded-full mx-auto flex items-center justify-center overflow-hidden">
-                      <img 
-                        src={`https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=wise%20ancestral%20doula%20woman%20portrait%20${doula.name.toLowerCase().replace(' ', '%20')}%20warm%20golden%20light%20mystical%20serene%20expression%20earth%20tones%20natural%20beauty%20maternal%20energy&image_size=square`}
-                        alt={`Retrato de ${doula.name}`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                      <span className="text-2xl font-bold text-earth-700 hidden">
+                      {doula.profile_image ? (
+                        <img 
+                          src={doula.profile_image}
+                          alt={`Foto de ${doula.name}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const sibling = target.nextElementSibling;
+                            if (sibling) sibling.classList.remove('hidden');
+                          }}
+                        />
+                      ) : null}
+                      <span className={`text-2xl font-bold text-earth-700 ${doula.profile_image ? 'hidden' : ''}`}>
                         {doula.name.charAt(0)}
                       </span>
                     </div>
@@ -418,7 +426,7 @@ const Doulas = () => {
                     to={`/doula/${doula.id}`}
                     className="block w-full bg-earth-600 text-white text-center py-3 rounded-lg hover:bg-earth-700 transition-colors font-medium"
                   >
-                    Conocer a la Guardiana
+                    Ver Perfil
                   </Link>
                 </div>
               </div>

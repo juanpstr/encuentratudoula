@@ -14,12 +14,15 @@ import {
   Globe, 
   Calendar,
   MessageCircle,
-  CheckCircle
+  CheckCircle,
+  Share2,
+  Copy,
+  ExternalLink
 } from 'lucide-react'
 import { useStore } from '../store/useStore'
-import { getDoulaById } from '../services/supabase'
+import { getDoulaById, getReviewsByDoulaId } from '../services/supabase'
 import { toast } from 'sonner'
-import type { Doula } from '../types'
+import type { Doula, Review } from '../types'
 import QRGenerator from '../components/QRGenerator'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -39,13 +42,18 @@ const DoulaProfile = () => {
   const { id } = useParams<{ id: string }>()
   const { isLoading, setLoading } = useStore()
   const [doula, setDoula] = useState<Doula | null>(null)
+  const [reviews, setReviews] = useState<Review[]>([])
   const [activeTab, setActiveTab] = useState('about')
 
   const loadDoula = useCallback(async (doulaId: string) => {
     setLoading(true)
     try {
-      const doula = await getDoulaById(doulaId)
-      setDoula(doula)
+      const [doulaData, reviewsData] = await Promise.all([
+        getDoulaById(doulaId),
+        getReviewsByDoulaId(doulaId)
+      ])
+      setDoula(doulaData)
+      setReviews(reviewsData)
     } catch (error) {
       toast.error('Error al cargar el perfil de la doula')
       console.error('Error loading doula:', error)
@@ -59,6 +67,23 @@ const DoulaProfile = () => {
       loadDoula(id)
     }
   }, [id, loadDoula])
+
+  const copyTestimonioLink = () => {
+    const link = `${window.location.origin}/doula/${id}/testimonio`
+    navigator.clipboard.writeText(link)
+    toast.success('¡Enlace copiado! Compártelo con tus clientes')
+  }
+
+  const handleCalendlyClick = () => {
+    if (doula?.calendly_link) {
+      window.open(doula.calendly_link, '_blank')
+    } else {
+      // Enlace genérico de la escuela o abrir WhatsApp
+      const phone = doula?.contact.phone.replace(/\s+/g, '').replace(/-/g, '')
+      const message = encodeURIComponent(`Hola ${doula?.name}, me gustaría agendar una consulta contigo.`)
+      window.open(`https://wa.me/${phone}?text=${message}`, '_blank')
+    }
+  }
 
   const getSpecialtyIcon = (specialty: string) => {
     switch (specialty.toLowerCase()) {
@@ -149,17 +174,20 @@ const DoulaProfile = () => {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 bg-gradient-to-br from-earth-200 to-sage-200 rounded-full flex items-center justify-center overflow-hidden">
-                    <img 
-                      src="https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=wise%20ancestral%20doula%20woman%20portrait%20with%20warm%20golden%20light%20mystical%20serene%20expression%20earth%20tones%20natural%20beauty%20maternal%20energy&image_size=square" 
-                      alt={`Retrato de ${doula.name}`}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.nextElementSibling?.classList.remove('hidden');
-                      }}
-                    />
-                    <span className="text-4xl font-bold text-earth-700 hidden">
+                    {doula.profile_image ? (
+                      <img 
+                        src={doula.profile_image}
+                        alt={`Foto de ${doula.name}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const sibling = target.nextElementSibling;
+                          if (sibling) sibling.classList.remove('hidden');
+                        }}
+                      />
+                    ) : null}
+                    <span className={`text-4xl font-bold text-earth-700 ${doula.profile_image ? 'hidden' : ''}`}>
                       {doula.name.charAt(0)}
                     </span>
                   </div>
@@ -377,44 +405,55 @@ const DoulaProfile = () => {
                         Basado en {doula.reviews_count} testimonios del círculo
                       </p>
                     </div>
+
+                    {/* Botón para dejar testimonio */}
+                    <div className="bg-sage-50 rounded-lg p-4 text-center">
+                      <p className="text-earth-700 mb-3">
+                        ¿Has sido acompañada por {doula.name.split(' ')[0]}?
+                      </p>
+                      <Link
+                        to={`/doula/${id}/testimonio`}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-earth-600 text-white rounded-lg hover:bg-earth-700 transition-colors"
+                      >
+                        <Star className="h-4 w-4" />
+                        Dejar mi testimonio
+                      </Link>
+                    </div>
                     
                     <div className="space-y-4">
-                      {/* Sample reviews - in a real app, these would come from the database */}
-                      {[
-                        {
-                          name: 'María González',
-                          rating: 5,
-                          date: '2024-01-15',
-                          comment: 'Excelente profesional. Me acompañó durante todo el proceso con mucha paciencia y conocimiento. Altamente recomendada.'
-                        },
-                        {
-                          name: 'Ana Rodríguez',
-                          rating: 5,
-                          date: '2024-01-10',
-                          comment: 'Una experiencia maravillosa. Su apoyo fue fundamental durante el parto. Muy profesional y cálida.'
-                        },
-                        {
-                          name: 'Carmen López',
-                          rating: 4,
-                          date: '2024-01-05',
-                          comment: 'Muy buena doula, me ayudó mucho en el postparto. Recomiendo sus servicios.'
-                        }
-                      ].map((review, index) => (
-                        <div key={index} className="border border-earth-200 rounded-lg p-4">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <h4 className="font-medium text-earth-900">{review.name}</h4>
-                              <div className="flex items-center">
-                                {renderStars(review.rating)}
+                      {reviews.length > 0 ? (
+                        reviews.map((review) => (
+                          <div key={review.id} className="border border-earth-200 rounded-lg p-4">
+                            <div className="flex justify-between items-start mb-2">
+                              <div>
+                                <h4 className="font-medium text-earth-900">{review.client_name}</h4>
+                                <div className="flex items-center gap-2">
+                                  {renderStars(review.rating)}
+                                  {review.service_type && (
+                                    <span className="text-xs bg-earth-100 text-earth-600 px-2 py-0.5 rounded-full">
+                                      {review.service_type}
+                                    </span>
+                                  )}
+                                </div>
                               </div>
+                              <span className="text-sm text-earth-500">
+                                {new Date(review.created_at).toLocaleDateString('es-ES')}
+                              </span>
                             </div>
-                            <span className="text-sm text-earth-500">
-                              {new Date(review.date).toLocaleDateString('es-ES')}
-                            </span>
+                            <p className="text-earth-700">{review.comment}</p>
                           </div>
-                          <p className="text-earth-700">{review.comment}</p>
+                        ))
+                      ) : (
+                        <div className="text-center py-8">
+                          <MessageCircle className="h-12 w-12 text-earth-300 mx-auto mb-3" />
+                          <p className="text-earth-600">
+                            Aún no hay testimonios publicados.
+                          </p>
+                          <p className="text-earth-500 text-sm mt-1">
+                            ¡Sé la primera en compartir tu experiencia!
+                          </p>
                         </div>
-                      ))}
+                      )}
                     </div>
                   </div>
                 )}
@@ -487,14 +526,49 @@ const DoulaProfile = () => {
                 ¿Lista para tu Camino Sagrado?
               </h3>
               <div className="space-y-3">
-                <button className="w-full flex items-center justify-center gap-2 bg-earth-600 text-white py-3 px-4 rounded-lg hover:bg-earth-700 transition-colors">
+                <button 
+                  onClick={handleCalendlyClick}
+                  className="w-full flex items-center justify-center gap-2 bg-earth-600 text-white py-3 px-4 rounded-lg hover:bg-earth-700 transition-colors"
+                >
                   <Calendar className="h-5 w-5" />
-                  Solicitar Encuentro Sagrado
+                  {doula.calendly_link ? 'Agendar Encuentro' : 'Solicitar Encuentro Sagrado'}
+                  {doula.calendly_link && <ExternalLink className="h-4 w-4" />}
                 </button>
-                <button className="w-full flex items-center justify-center gap-2 border border-earth-300 text-earth-700 py-3 px-4 rounded-lg hover:bg-earth-50 transition-colors">
+                <a 
+                  href={`https://wa.me/${doula.contact.phone.replace(/\s+/g, '').replace(/-/g, '')}?text=${encodeURIComponent(`Hola ${doula.name}, me gustaría conocer más sobre tus servicios de acompañamiento.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 border border-earth-300 text-earth-700 py-3 px-4 rounded-lg hover:bg-earth-50 transition-colors"
+                >
                   <MessageCircle className="h-5 w-5" />
-                  Conectar con la Guardiana
+                  Conectar por WhatsApp
+                </a>
+              </div>
+            </div>
+
+            {/* Compartir enlace de testimonios */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-earth-900 mb-4">
+                Enlace para Testimonios
+              </h3>
+              <p className="text-sm text-earth-600 mb-3">
+                Comparte este enlace con tus clientes para que dejen sus testimonios:
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={copyTestimonioLink}
+                  className="flex-1 flex items-center justify-center gap-2 bg-sage-100 text-earth-700 py-2 px-3 rounded-lg hover:bg-sage-200 transition-colors text-sm"
+                >
+                  <Copy className="h-4 w-4" />
+                  Copiar enlace
                 </button>
+                <Link
+                  to={`/doula/${id}/testimonio`}
+                  className="flex items-center justify-center gap-2 bg-earth-100 text-earth-700 py-2 px-3 rounded-lg hover:bg-earth-200 transition-colors text-sm"
+                >
+                  <Share2 className="h-4 w-4" />
+                  Ver
+                </Link>
               </div>
             </div>
 

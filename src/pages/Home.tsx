@@ -73,14 +73,10 @@ const Home = () => {
               />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-earth-900 mb-6">
-              Encuentra tu <span className="text-earth-600">Doula</span> perfecta
+              Conecta con tu <span className="text-earth-600">Doula del Alma</span>
             </h1>
             <p className="text-xl text-earth-700 mb-8 max-w-3xl mx-auto">
-              Conecta con doulas formadas en Escuela Mística de Saberes. Acompañamiento profesional y amoroso para tu embarazo, parto, postparto y procesos de vida.
-              <br />
-              <span className="text-sm text-earth-600 mt-2 block">
-                🚀 Deploy automático con Hostinger Git funcionando perfectamente
-              </span>
+              Conecta con Doulas formadas en la Escuela Ancestral de Doulas, con un enfoque integral para acompañarte de manera física, emocional y espiritual en tu Ciclicidad, en la Sanación de Memorias Uterinas, Preconcepción y Fertilidad, Gestación, Parto, Postparto, Maternidad/Paternidad y Duelos.
             </p>
             
             {/* Search Bar */}
@@ -112,21 +108,21 @@ const Home = () => {
             <div className="text-center">
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <Users className="h-12 w-12 text-earth-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-earth-900 mb-2">6</h3>
-                <p className="text-earth-600">Doulas certificadas</p>
+                <h3 className="text-2xl font-bold text-earth-900 mb-2">14</h3>
+                <p className="text-earth-600">Doulas Ancestrales Certificadas</p>
               </div>
             </div>
             <div className="text-center">
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <MapPin className="h-12 w-12 text-sage-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-earth-900 mb-2">6</h3>
-                <p className="text-earth-600">Ciudades Cubiertas</p>
+                <h3 className="text-2xl font-bold text-earth-900 mb-2">13</h3>
+                <p className="text-earth-600">Ciudades en el Mundo</p>
               </div>
             </div>
             <div className="text-center">
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <Star className="h-12 w-12 text-warm-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-earth-900 mb-2">4.9</h3>
+                <h3 className="text-2xl font-bold text-earth-900 mb-2">4.8</h3>
                 <p className="text-earth-600">Calificación Promedio</p>
               </div>
             </div>
@@ -140,10 +136,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-earth-900 mb-4">
-              Cómo funciona
+              Cómo Funciona
             </h2>
             <p className="text-lg text-earth-600 max-w-2xl mx-auto">
-              Tres pasos sencillos para encontrar tu acompañamiento ideal
+              Tres pasos sencillos para encontrar tu acompañamiento ideal. La red de Doulas Ancestrales certificadas guiarán tu camino.
             </p>
           </div>
 
@@ -189,32 +185,47 @@ const Home = () => {
               </h2>
               <div className="space-y-4 text-lg text-earth-700">
                 <p>
-                  Una <strong>Doula Ancestral</strong> es una guardiana de la sabiduría milenaria que honra los rituales sagrados del nacimiento. 
-                  Conecta con las tradiciones de nuestras abuelas, creando un puente entre la medicina moderna y los saberes ancestrales.
+                  Una <strong>Doula Ancestral</strong> es aquella que lleva en sus venas el latir y la sabiduría de todas sus antecesoras (su ancestralidad), es aquella que confía plenamente en el sentir de su corazón y su alma cuando está al servicio de otras hermanas, es aquella que integra en su caminar diferentes Saberes que la nutren a nivel personal y profesional.
                 </p>
                 <p>
-                  En la <strong>Escuela Mística de Saberes</strong>, cada doula es iniciada en prácticas ceremoniales que incluyen:
+                  En la <strong>Escuela Ancestral de Doulas</strong>, cada doula es iniciada en los siguientes Roles:
                 </p>
                 <ul className="space-y-2 ml-6">
                   <li className="flex items-start">
                     <span className="text-earth-600 mr-2">•</span>
-                    <span>Rituales de bendición y protección energética</span>
+                    <span>Ciclicidad</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-earth-600 mr-2">•</span>
-                    <span>Medicina herbal y aromaterapia sagrada</span>
+                    <span>Sanación de Memorias Uterinas</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-earth-600 mr-2">•</span>
-                    <span>Técnicas de respiración y meditación ancestral</span>
+                    <span>Preconcepción y Fertilidad</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-earth-600 mr-2">•</span>
-                    <span>Ceremonias de cierre y sanación postparto</span>
+                    <span>Gestación</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-earth-600 mr-2">•</span>
+                    <span>Parto</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-earth-600 mr-2">•</span>
+                    <span>Postparto</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-earth-600 mr-2">•</span>
+                    <span>Maternidad/Paternidad</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-earth-600 mr-2">•</span>
+                    <span>Duelos</span>
                   </li>
                 </ul>
-                <p className="text-earth-800 font-medium">
-                  "Cada nacimiento es un portal sagrado. Nosotras somos las guardianas de ese umbral."
+                <p className="text-earth-700 mt-4">
+                  Además, complementan estos Roles con diferentes disciplinas y saberes como el Yoga Prenatal y Posnatal, Medicina Tradicional China, Herbolaria, Medicina, Artes y Rituales Placentarios, Reflexología, Flores de Bach entre muchos más.
                 </p>
               </div>
             </div>
@@ -239,10 +250,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-earth-900 mb-4">
-              ¿Por qué elegir una Doula?
+              ¿Por qué elegir una Doula Ancestral?
             </h2>
             <p className="text-lg text-earth-600 max-w-2xl mx-auto">
-              Las doulas brindan apoyo emocional, físico e informativo durante el embarazo, parto y postparto.
+              Las Doulas Ancestrales brindamos apoyo físico, emocional y espiritual, entregamos información de inmenso valor en cada etapa de vida de la mujer y su familia. Siempre acompañamos con empatía, cercanía, amor y respeto.
             </p>
           </div>
 
