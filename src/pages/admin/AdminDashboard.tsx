@@ -275,6 +275,13 @@ const AdminDashboard = () => {
                   <span>Gestionar Doulas</span>
                 </Link>
                 <Link
+                  to="/admin/reservas"
+                  className="flex items-center gap-3 p-3 text-earth-700 hover:bg-earth-50 rounded-lg transition-colors bg-yellow-50 border border-yellow-200"
+                >
+                  <Calendar className="h-5 w-5 text-yellow-600" />
+                  <span className="font-medium">Gestionar Reservas</span>
+                </Link>
+                <Link
                   to="/admin/analytics"
                   className="flex items-center gap-3 p-3 text-earth-700 hover:bg-earth-50 rounded-lg transition-colors"
                 >

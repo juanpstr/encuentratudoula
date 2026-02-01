@@ -56,11 +56,11 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-earth-100 via-sage-50 to-warm-50 py-20 overflow-hidden">
         {/* Hero Background Image */}
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-40">
           <img 
-            src="/hero-doula.png" 
+            src="/hero-banner.jpg" 
             alt="Doula Ancestral" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

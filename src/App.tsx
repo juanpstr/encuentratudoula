@@ -8,6 +8,7 @@ import Doulas from './pages/Doulas'
 import DoulaProfile from './pages/DoulaProfile'
 import DoulaQR from './pages/DoulaQR'
 import DejarTestimonio from './pages/DejarTestimonio'
+import BookingPage from './pages/BookingPage'
 import SobreNosotros from './pages/SobreNosotros'
 import PoliticaPrivacidad from './pages/legal/PoliticaPrivacidad'
 import TerminosCondiciones from './pages/legal/TerminosCondiciones'
@@ -18,6 +19,7 @@ import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminDoulas from './pages/admin/AdminDoulas'
 import AdminDoulaForm from './pages/admin/AdminDoulaForm'
+import AdminBookings from './pages/admin/AdminBookings'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -48,6 +50,7 @@ function App() {
           <Route path="/doula/:id" element={<DoulaProfile />} />
           <Route path="/doula/:id/qr" element={<DoulaQR />} />
           <Route path="/doula/:id/testimonio" element={<DejarTestimonio />} />
+          <Route path="/doula/:slug/reservar" element={<BookingPage />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
           <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
@@ -86,6 +89,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDoulaForm />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin/reservas" 
+            element={
+              <ProtectedRoute>
+                <AdminBookings />
               </ProtectedRoute>
             } 
           />

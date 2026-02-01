@@ -16,8 +16,7 @@ import {
   MessageCircle,
   CheckCircle,
   Share2,
-  Copy,
-  ExternalLink
+  Copy
 } from 'lucide-react'
 import { useStore } from '../store/useStore'
 import { getDoulaById, getReviewsByDoulaId } from '../services/supabase'
@@ -72,17 +71,6 @@ const DoulaProfile = () => {
     const link = `${window.location.origin}/doula/${id}/testimonio`
     navigator.clipboard.writeText(link)
     toast.success('¡Enlace copiado! Compártelo con tus clientes')
-  }
-
-  const handleCalendlyClick = () => {
-    if (doula?.calendly_link) {
-      window.open(doula.calendly_link, '_blank')
-    } else {
-      // Enlace genérico de la escuela o abrir WhatsApp
-      const phone = doula?.contact.phone.replace(/\s+/g, '').replace(/-/g, '')
-      const message = encodeURIComponent(`Hola ${doula?.name}, me gustaría agendar una consulta contigo.`)
-      window.open(`https://wa.me/${phone}?text=${message}`, '_blank')
-    }
   }
 
   const getSpecialtyIcon = (specialty: string) => {
@@ -526,14 +514,13 @@ const DoulaProfile = () => {
                 ¿Lista para tu Camino Sagrado?
               </h3>
               <div className="space-y-3">
-                <button 
-                  onClick={handleCalendlyClick}
+                <Link
+                  to={`/doula/${doula.slug}/reservar`}
                   className="w-full flex items-center justify-center gap-2 bg-earth-600 text-white py-3 px-4 rounded-lg hover:bg-earth-700 transition-colors"
                 >
                   <Calendar className="h-5 w-5" />
-                  {doula.calendly_link ? 'Agendar Encuentro' : 'Solicitar Encuentro Sagrado'}
-                  {doula.calendly_link && <ExternalLink className="h-4 w-4" />}
-                </button>
+                  Reservar Cita
+                </Link>
                 <a 
                   href={`https://wa.me/${doula.contact.phone.replace(/\s+/g, '').replace(/-/g, '')}?text=${encodeURIComponent(`Hola ${doula.name}, me gustaría conocer más sobre tus servicios de acompañamiento.`)}`}
                   target="_blank"

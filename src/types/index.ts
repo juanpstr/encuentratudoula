@@ -102,3 +102,66 @@ export interface MapBounds {
   east: number;
   west: number;
 }
+
+// Sistema de Reservas
+export interface Booking {
+  id: string;
+  doula_id: string;
+  doula_name?: string; // Para mostrar en admin
+  
+  // Cliente
+  client_name: string;
+  client_email: string;
+  client_phone?: string;
+  
+  // Detalles
+  service_type: string;
+  booking_date: string;
+  start_time: string;
+  end_time: string;
+  duration_minutes: number;
+  
+  // Modalidad
+  modality: 'presencial' | 'online';
+  meeting_link?: string;
+  location_notes?: string;
+  
+  // Estado
+  status: 'pending' | 'confirmed' | 'cancelled' | 'completed' | 'no_show';
+  
+  // Notas
+  client_notes?: string;
+  doula_notes?: string;
+  admin_notes?: string;
+  
+  // Confirmaciones
+  confirmed_by_doula: boolean;
+  confirmed_at?: string;
+  cancelled_at?: string;
+  cancellation_reason?: string;
+  
+  created_at: string;
+  updated_at?: string;
+}
+
+export interface TimeSlot {
+  time: string;
+  available: boolean;
+}
+
+export interface DoulaAvailability {
+  id: string;
+  doula_id: string;
+  day_of_week: number; // 0-6
+  start_time: string;
+  end_time: string;
+  is_active: boolean;
+}
+
+export interface ScheduleBlock {
+  id: string;
+  doula_id: string;
+  start_date: string;
+  end_date: string;
+  reason?: string;
+}
